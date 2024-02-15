@@ -23,7 +23,7 @@ namespace fibonacci_sequence
                 }
 
                 Console.WriteLine("The Fibonacci sequence that starts with your entered number is:");
-                Display(num);
+                DisplayFibonacci(num);
 
                 Console.Write("Do you want to get the sequence for another number? (Y/N) ");
                 again = Console.ReadLine();
@@ -43,25 +43,28 @@ namespace fibonacci_sequence
             }
         }
 
-        static void Display(int num)
+        static void DisplayFibonacci(int num)
         {
-            int a = num, b = a;
+            int a = 0, b = 1;
 
             Console.Write(a + " ");
 
-            int temp;
-            do
+            for (int i = 1; i <= num; i++)
             {
                 Console.Write(b + " ");
 
-                temp = a;
+                int temp = a;
                 a = b;
                 b = temp + b;
 
-            } while (b <= int.MaxValue - a);
+                if (b <= a)
+                {
+                    Console.WriteLine("\nWarning: Fibonacci sequence exceeds the capacity of integer data type.");
+                    return;
+                }
+            }
 
             Console.WriteLine();
         }
     }
 }
-
