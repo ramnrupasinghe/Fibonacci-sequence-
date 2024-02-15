@@ -22,16 +22,17 @@ namespace fibonacci_sequence
                     Console.WriteLine("Invalid input. Please enter a valid number : ");
                 }
 
-                Console.WriteLine("The Fibonacci sequence that starts with your entered number is:");
+                Console.WriteLine("The Fibonacci sequence that starts with your entered number is:"); 
                 DisplayFibonacci(num);
 
-                Console.Write("Do you want to get the sequence for another number? (Y/N) ");
+                Console.Write("Do you want to get the sequence for another number? (Y/N) "); 
                 again = Console.ReadLine();
 
                 while (!(again.ToUpper() == "Y" || again.ToUpper() == "N"))
                 {
                     Console.Write("Invalid input. Please enter Y or N: ");
                     again = Console.ReadLine();
+
                 }
 
             } while (again.ToUpper() == "Y");
@@ -49,21 +50,30 @@ namespace fibonacci_sequence
 
             Console.Write(a + " ");
 
-            for (int i = 1; i <= num; i++)
+            int[] sequence = new int[num];
+            sequence[0] = a;
+
+            for (int i = 1; i < num; i++)
             {
                 Console.Write(b + " ");
+                sequence[i] = b;
 
                 int temp = a;
                 a = b;
                 b = temp + b;
 
-                if (b <= a)
+                if (b < 0)
                 {
                     Console.WriteLine("\nWarning: Fibonacci sequence exceeds the capacity of integer data type.");
                     return;
                 }
             }
 
+            Console.WriteLine("\nThe Fibonacci sequence in reverse:");
+            for (int i = num - 1; i >= 0; i--)
+            {
+                Console.Write(sequence[i] + " ");
+            }
             Console.WriteLine();
         }
     }
